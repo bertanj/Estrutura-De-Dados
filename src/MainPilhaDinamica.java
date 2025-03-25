@@ -6,5 +6,9 @@ public class MainPilhaDinamica {
         pilhaDinamica.visualizar();
         pilhaDinamica.desempilhar();
         pilhaDinamica.visualizar();
+        pilhaDinamica.desempilhar();
+        pilhaDinamica.visualizar();
+        pilhaDinamica.desempilhar();
+        pilhaDinamica.visualizar();
     }
 }

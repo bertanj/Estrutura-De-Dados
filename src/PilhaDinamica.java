@@ -22,7 +22,20 @@ public class PilhaDinamica {
         if(vazia()){
             System.out.println("Pilha vazia, sem conteudos para desempilhar...");
         }else {
-            this.ultimo.setConteudo(ultimo.getProx().getConteudo());
+            No aux = this.primeiro;
+            if(this.primeiro == this.ultimo) {
+                this.primeiro = null;
+                this.ultimo = null;
+            }else {
+                while (aux != null) {
+                    if (aux.getProx().getConteudo().equals(this.ultimo.getConteudo())) {
+                        this.ultimo = aux;
+                        aux.setProx(aux.getProx().getProx());
+                        return;
+                    }
+                    aux = aux.getProx();
+                }
+            }
         }
     }
 
