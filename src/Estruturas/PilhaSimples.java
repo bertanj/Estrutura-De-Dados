@@ -1,3 +1,5 @@
+package Estruturas;
+
 public class PilhaSimples {
     private int tamanho;
     private String[] pilha;

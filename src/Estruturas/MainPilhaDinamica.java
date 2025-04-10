@@ -1,3 +1,5 @@
+package Estruturas;
+
 public class MainPilhaDinamica {
     public static void main(String[] args) {
         PilhaDinamica pilhaDinamica = new PilhaDinamica("Mateus");

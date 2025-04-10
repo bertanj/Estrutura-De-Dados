@@ -1,3 +1,5 @@
+package Estruturas;
+
 public class MainFilaSimples {
     public static void main(String[] args) {
         FilaSimples filaSimples = new FilaSimples(4);

@@ -1,3 +1,5 @@
+package Estruturas;
+
 public class ListaSimples {
     private int contador = 0;
     private int tamanho;

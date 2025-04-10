@@ -1,3 +1,5 @@
+package Estruturas;
+
 public class ListaDinamica {
     private int contador = 0;
     private No primeiro;
@@ -53,7 +55,7 @@ public class ListaDinamica {
                     }
                     aux = aux.getProx();
                 }
-            }catch (Exception e) {//Caso dê o erro no bloco try{} de '... value of "No.getProx()" is null'  será lançado uma mensagem para o usuario saber que digitou o conteudo errado.
+            }catch (Exception e) {//Caso dê o erro no bloco try{} de '... value of "Estruturas.No.getProx()" is null'  será lançado uma mensagem para o usuario saber que digitou o conteudo errado.
                 System.out.println("Não foi possível remover o elemento (" + conteudo+ ") da lista, pois não existe!");
             }
         }

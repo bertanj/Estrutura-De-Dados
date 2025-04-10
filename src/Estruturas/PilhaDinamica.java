@@ -1,3 +1,5 @@
+package Estruturas;
+
 public class PilhaDinamica {
     private No primeiro;
     private No ultimo;
