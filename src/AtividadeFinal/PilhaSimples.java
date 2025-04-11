@@ -23,7 +23,7 @@ public class PilhaSimples implements IEstruturaSimples{
                 }
             }
         }
-    } //OK
+    } //OK2
 
     @Override
     public void inserirElementoIndice(Object elemento, int indice) {
@@ -32,9 +32,9 @@ public class PilhaSimples implements IEstruturaSimples{
         }else if (pilha[indice-1] != null){
             System.out.println("Posição já está ocupada. impossível inserir elemento...");
         }else {
-            pilha[indice] = elemento;
+            pilha[indice-1] = elemento;
         }
-    }
+    }//OK2
 
     @Override
     public void inserirSequencia(Object[] elementos) {
@@ -53,7 +53,7 @@ public class PilhaSimples implements IEstruturaSimples{
                 }
             }
         }
-    }
+    }//OK
 
     @Override
     public boolean removerElemento() {
@@ -86,8 +86,21 @@ public class PilhaSimples implements IEstruturaSimples{
 
     @Override
     public void removerSequencia(Object[] elementos) {
-
-    }
+        int contador =0;
+        if (estaVazia()) {
+            System.out.println("Pilha não contém elementos para serem removidos");
+        }else{
+            int aux = 0;
+            for (int i = 0; i < pilha.length; i++) {
+                if(pilha[i] == elementos[aux]){
+                    pilha[i] = null;
+                    aux++;
+                    contador++;
+                }
+            }
+            System.out.println("Quantidade de elementos removidos: "+ contador);
+        }
+    } //OK
 
     @Override
     public void removerTodasOcorrencias(Object elemento) {
@@ -149,7 +162,7 @@ public class PilhaSimples implements IEstruturaSimples{
                 }
             }
         }
-    }
+    } //OK
 
     @Override
     public void ordenarDecrescente() {
@@ -164,7 +177,7 @@ public class PilhaSimples implements IEstruturaSimples{
                 }
             }
         }
-    }
+    } //OK
 
     @Override
     public int quantidadeElementos() {
