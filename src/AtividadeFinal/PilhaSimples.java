@@ -38,7 +38,21 @@ public class PilhaSimples implements IEstruturaSimples{
 
     @Override
     public void inserirSequencia(Object[] elementos) {
-
+        if (estaVazia()) {
+            for (int i = 0; i < elementos.length && i < pilha.length; i++) {
+                pilha[i] = elementos[i];
+            }
+        } else if (estaCheia()) {
+            System.out.println("Pilha não contém espaço para Inserir valores");
+        } else {
+            int aux = 0;
+            for (int i = 0; i < pilha.length; i++) {
+                if (pilha[i] == null && aux < elementos.length) {
+                    pilha[i] = elementos[aux];
+                    aux++; //Passa para o próximo elemetno
+                }
+            }
+        }
     }
 
     @Override
@@ -125,24 +139,31 @@ public class PilhaSimples implements IEstruturaSimples{
     @Override
     public void ordenarCrescente() {
         if (pilha[0] instanceof Integer) {
-                int contador = 0;
-                int aux = 0;
-                for (int i = 1; i < pilha.length; i++) {
-                    Integer menor = (Integer) pilha[contador];
-                    if ((Integer) pilha[i] < menor) {
-                        menor = (Integer) pilha[i];
+            for (int i = 0; i < pilha.length; i++) {
+                for (int j = 0; j < pilha.length; j++) {
+                    if((Integer) pilha[i] < (Integer) pilha[j]){
+                        Object aux = pilha[i];
+                        pilha[i] = pilha[j];
+                        pilha[j] = aux;
                     }
-                    pilha[aux] = menor;
-                    aux++;
-                    contador++;
                 }
-
+            }
         }
     }
 
     @Override
     public void ordenarDecrescente() {
-
+        if (pilha[0] instanceof Integer) {
+            for (int i = 0; i < pilha.length; i++) {
+                for (int j = 0; j < pilha.length; j++) {
+                    if((Integer) pilha[i] > (Integer) pilha[j]){
+                        Object aux = pilha[i];
+                        pilha[i] = pilha[j];
+                        pilha[j] = aux;
+                    }
+                }
+            }
+        }
     }
 
     @Override
