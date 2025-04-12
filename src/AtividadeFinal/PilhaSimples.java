@@ -32,14 +32,28 @@ public class PilhaSimples implements IEstruturaSimples{
         }else if (pilha[indice-1] != null){
             System.out.println("Posição já está ocupada. impossível inserir elemento...");
         }else {
-            pilha[indice] = elemento;
+            pilha[indice-1] = elemento;
         }
-    }
+    }//OK
 
     @Override
     public void inserirSequencia(Object[] elementos) {
-
-    }
+        if (estaVazia()) {
+            for (int i = 0; i < elementos.length && i < pilha.length; i++) {
+                pilha[i] = elementos[i];
+            }
+        } else if (estaCheia()) {
+            System.out.println("Pilha não contém espaço para Inserir valores");
+        } else {
+            int aux = 0;
+            for (int i = 0; i < pilha.length; i++) {
+                if (pilha[i] == null && aux < elementos.length) {
+                    pilha[i] = elementos[aux];
+                    aux++; //Passa para o próximo elemetno
+                }
+            }
+        }
+    }//OK
 
     @Override
     public boolean removerElemento() {
@@ -67,25 +81,38 @@ public class PilhaSimples implements IEstruturaSimples{
         }else{
             pilha[indice - 1] = null;
         }
-        return pilha[indice];
+        return pilha[indice-1];
     }//OK
 
     @Override
     public void removerSequencia(Object[] elementos) {
-
-    }
+        int contador =0;
+        if (estaVazia()) {
+            System.out.println("Pilha não contém elementos para serem removidos");
+        }else{
+            int aux = 0;
+            for (int i = 0; i < pilha.length; i++) {
+                if(pilha[i].equals(elementos[aux])){
+                    pilha[i] = null;
+                    aux++;
+                    contador++;
+                }
+            }
+            System.out.println("Quantidade de elementos removidos: "+ contador);
+        }
+    } //OK
 
     @Override
     public void removerTodasOcorrencias(Object elemento) {
         int contador = 0;
         for (int i = 0; i < pilha.length; i++) {
-            if (pilha[i] == elemento){
+            if (pilha[i].equals(elemento)){
                 pilha[i] = null;
                 contador++;
             }
         }
         System.out.println("Total de "+ contador + " ocorrências removidas!");
-    }//Ok
+    }//OK
 
     @Override
     public boolean estaCheia() {
@@ -106,7 +133,7 @@ public class PilhaSimples implements IEstruturaSimples{
     @Override
     public boolean buscarElemento(Object elemento) {
         for (int i = 0; i < pilha.length; i++) {
-            if (pilha[i] == elemento){
+            if (pilha[i].equals(elemento)){
                 return true;
             }
         }
@@ -124,26 +151,52 @@ public class PilhaSimples implements IEstruturaSimples{
 
     @Override
     public void ordenarCrescente() {
-        if (pilha[0] instanceof Integer) {
-                int contador = 0;
-                int aux = 0;
-                for (int i = 1; i < pilha.length; i++) {
-                    Integer menor = (Integer) pilha[contador];
-                    if ((Integer) pilha[i] < menor) {
-                        menor = (Integer) pilha[i];
-                    }
-                    pilha[aux] = menor;
-                    aux++;
-                    contador++;
+        for (int i = 0; i < pilha.length; i++) {
+            if (pilha[i] != null) {
+                try {
+                    pilha[i] = Integer.parseInt((String) pilha[i]);
+                } catch (Exception e) {
+                    System.out.println("Erro ao converter elemento para número: " + pilha[i]);
+                    return;
                 }
-
+            }
         }
-    }
+        for (int i = 0; i < pilha.length; i++) {
+            for (int j = 0; j < pilha.length; j++) {
+                if((Integer) pilha[i] < (Integer) pilha[j]){
+                    Object aux = pilha[i];
+                    pilha[i] = pilha[j];
+                    pilha[j] = aux;
+                }
+            }
+        }
+        System.out.println("Pilha ordenada");
+    } //OK
 
     @Override
     public void ordenarDecrescente() {
+        for (int i = 0; i < pilha.length; i++) {
+            if (pilha[i] != null) {
+                try {
+                    pilha[i] = Integer.parseInt((String) pilha[i]);
+                } catch (Exception e) {
+                    System.out.println("Erro ao converter elemento para número: " + pilha[i]);
+                    return;
+                }
+            }
+        }
 
-    }
+        for (int i = 0; i < pilha.length; i++) {
+            for (int j = 0; j < pilha.length; j++) {
+                if((Integer) pilha[i] > (Integer) pilha[j]){
+                    Object aux = pilha[i];
+                    pilha[i] = pilha[j];
+                    pilha[j] = aux;
+                }
+            }
+        }
+        System.out.println("Pilha ordenada");
+    } //OK
 
     @Override
     public int quantidadeElementos() {
@@ -157,28 +210,30 @@ public class PilhaSimples implements IEstruturaSimples{
     }//OK
 
     @Override
-    public void dobrarCapacidade() {
+    public void dobrarCapacidade()  {
         Object[] pilhaAumentada = new Object[pilha.length*2];
         for (int i = 0; i < pilha.length; i++) {
             pilhaAumentada[i] = pilha[i];
         }
         pilha = pilhaAumentada;
+        tamanho = pilha.length;
     }//OK
 
     @Override
     public void editarElemento(Object elementoAntigo, Object elementoNovo) {
         for (int i = 0; i < pilha.length; i++) {
-            if (pilha[i] == elementoAntigo){
+            if (pilha[i].equals(elementoAntigo)){
                 pilha[i] = elementoNovo;
                 return;
             }
         }
+        System.out.println("Elemento não encontrado na pilha...");
     }//OK
 
     @Override
     public void limpar() {
         for (int i = 0; i < pilha.length; i++) {
-            while(pilha[i] != null)
+            if (pilha[i] != null)
                 pilha[i] = null;
         }
     }//OK
