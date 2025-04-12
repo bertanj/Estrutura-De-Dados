@@ -3,12 +3,11 @@ package AtividadeFinal;
 public class TestePilha {
     public static void main(String[] args) {
          PilhaSimples pilhaSimples = new PilhaSimples(4);
-         Object[] elementos = {9,3,4,5};
+         Object[] elementos = {1,3,5,0};
          pilhaSimples.inserirSequencia(elementos);
-         pilhaSimples.removerIndice(2);
-         pilhaSimples.exibir();
-         pilhaSimples.inserirElementoIndice(6,2);
+        pilhaSimples.ordenarCrescente();
         pilhaSimples.exibir();
+
     }
 
 }
